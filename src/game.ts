@@ -1,5 +1,6 @@
 import { audio, pentaFreq } from './engine/AudioEngine'
 import { track } from './analytics'
+import { stats } from './share'
 import { t as tr } from './i18n'
 import { Flash, HitStop, Particles, Shake, clamp, haptic, rand, runLoop, setupCanvas, type Stage } from './engine/juice'
 
@@ -199,6 +200,7 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     chaining = false
     banner = { text: `×${chainCount} CHAIN!`, t: 1, hue: 300 }
     track('overdrive_chain', { bubbles: chainCount })
+    stats.n = Math.max(stats.n ?? 0, chainCount)
     flash.fire(0.7, '255,210,255')
     shake.add(0.8)
     stop.trigger(45)
