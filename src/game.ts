@@ -1,4 +1,6 @@
 import { audio, pentaFreq } from './engine/AudioEngine'
+import { track } from './analytics'
+import { t as tr } from './i18n'
 import { Flash, HitStop, Particles, Shake, clamp, haptic, rand, runLoop, setupCanvas, type Stage } from './engine/juice'
 
 const HUES = [330, 300, 270, 200, 180, 150, 50, 20]
@@ -196,6 +198,7 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
   function finale() {
     chaining = false
     banner = { text: `×${chainCount} CHAIN!`, t: 1, hue: 300 }
+    track('overdrive_chain', { bubbles: chainCount })
     flash.fire(0.7, '255,210,255')
     shake.add(0.8)
     stop.trigger(45)
@@ -355,7 +358,7 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
       ctx.font = '800 13px system-ui, sans-serif'
       ctx.textAlign = 'center'
       ctx.fillStyle = `rgba(255,220,90,${0.6 + 0.4 * pulse})`
-      ctx.fillText('OVERDRIVE · 点任意处引爆', w / 2, 44)
+      ctx.fillText(tr('pop_armed'), w / 2, 44)
     }
     flash.draw(ctx, w, h)
   }
