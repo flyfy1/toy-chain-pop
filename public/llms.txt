@@ -1,0 +1,45 @@
+# Chain Pop
+
+> A wall of bouncy neon bubbles. Pop five in 1.5 seconds for OVERDRIVE, then one tap sets off a full-screen chain reaction. A tiny stress-relief toy, no sign-up.
+
+Chain Pop (连锁泡泡 (zh-CN), Burbujas en Cadena (es), Bulles en Chaîne (fr), 連鎖バブル (ja)) is a free browser toy at https://pop.integ.life/ by Integ Life. It opens straight into play: no sign-up, no download, no ads, no tutorial. It works with a mouse or a touchscreen on phones, tablets and computers.
+
+## How to play
+
+1. Tap or click a bubble to pop it, or drag across the screen to pop a whole row. Each pop is a crisp, bouncy sound that climbs in pitch, and the neighbouring bubbles wobble.
+2. Pop 5 bubbles within 1.5 seconds to arm OVERDRIVE. The screen border glows and the five dots at the top light up.
+3. Your next tap sends out a shockwave: every bubble on the screen pops in a chain reaction over about two seconds, with a rain of notes. Then the whole wall bounces back.
+4. Popped bubbles grow back after a few seconds, so it never runs out.
+
+## Facts
+
+- URL: https://pop.integ.life/
+- Price: free
+- Platforms: any modern web browser (desktop and mobile)
+- Languages: English, 简体中文 (Simplified Chinese), Español, Français and 日本語 (Japanese), picked from the browser language (default English)
+- Sound: synthesised live with the Web Audio API; vibration on Android
+- Made by: Integ Life (https://integ.life/), first published 2026-11-24
+
+## FAQ
+
+**Is Chain Pop free?**
+Yes. It is free, with no sign-up, no download and no ads. It runs in any modern browser on phones, tablets and computers.
+
+**Does it have sound and vibration?**
+Yes. Every sound is synthesised live in the browser with the Web Audio API, so there are no audio files to load. On Android phones it also vibrates at the big moments; iPhone browsers do not support web vibration.
+
+**Which languages does it support?**
+English, 简体中文 (Simplified Chinese), Español, Français and 日本語 (Japanese). The language is picked automatically from your browser settings; any other language falls back to English.
+
+**Who made it?**
+Integ Life (integ.life). Chain Pop is one of four small stress-relief toys, together with Charge Burst, Void Harvest, Glass Smash. More games are at games.integ.life.
+
+**Is any personal data collected?**
+No account and no personal data. At most, anonymous usage statistics (page views and play counts) are collected.
+
+## Related
+
+- [Charge Burst](https://charge.integ.life/): Hold to charge a glowing energy core, release to detonate it.
+- [Void Harvest](https://void.integ.life/): Your cursor is a black hole: swallow a screen full of jittery shapes.
+- [Glass Smash](https://smash.integ.life/): Smash a pane of glass with the word you hate written on it.
+- [Integ Games](https://games.integ.life/): more browser games
