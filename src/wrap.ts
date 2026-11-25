@@ -359,7 +359,10 @@ export function makePopped(R: number, dpr: number, v: number): HTMLCanvasElement
   blob(lx, ly, 0.42 * R, 0.2 * R, rot, 'rgba(255,255,255,0.13)')
   blob(lx + Math.cos(rot + 1.57) * 0.2 * R, ly + Math.sin(rot + 1.57) * 0.2 * R, 0.36 * R, 0.13 * R, rot + 0.15, 'rgba(85,60,30,0.06)')
   blob(lx + Math.cos(rot) * 0.32 * R, ly + Math.sin(rot) * 0.32 * R, 0.18 * R, 0.1 * R, rot - 0.4, 'rgba(255,255,255,0.08)')
-  // 1-2 short soft creases running out from the slit
+  // 1-2 short soft creases running out from the slit (barely there on the 4 variants with no slit,
+  // so those cells read as clean flat film)
+  const noTear = [0, 3, 6, 8].includes(v % 10)
+  const ck = noTear ? 0.4 : 1
   g.lineCap = 'round'
   const nc = 1 + (r() < 0.5 ? 1 : 0)
   for (let i = 0; i < nc; i++) {
@@ -370,8 +373,8 @@ export function makePopped(R: number, dpr: number, v: number): HTMLCanvasElement
     const bx = (px + ex) / 2 + Math.cos(a + 1.57) * 0.06 * R
     const by = (py + ey) / 2 + Math.sin(a + 1.57) * 0.06 * R
     for (const [dx, dy, col, lw] of [
-      [0.8, 0.8, 'rgba(70,50,25,0.09)', 1.6],
-      [0, 0, 'rgba(255,255,255,0.2)', 1.4],
+      [0.8, 0.8, `rgba(70,50,25,${0.09 * ck})`, 1.6],
+      [0, 0, `rgba(255,255,255,${0.2 * ck})`, 1.4],
     ] as const) {
       g.strokeStyle = col
       g.lineWidth = lw
@@ -398,7 +401,7 @@ export function makePopped(R: number, dpr: number, v: number): HTMLCanvasElement
     g.quadraticCurveTo(px - uy * bend + ox, py + ux * bend + oy, px + ux * sl + ox, py + uy * sl + oy)
     g.stroke()
   }
-  if (![0, 3, 6, 8].includes(v % 10)) {
+  if (!noTear) {
     tear(0, 0, `rgba(55,38,18,${(0.24 * depth).toFixed(3)})`, 1.2 + 0.3 * depth)
     tear(-0.9, -1.1, `rgba(255,255,255,${(0.28 * depth).toFixed(3)})`, 0.9)
   }
