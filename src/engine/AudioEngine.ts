@@ -201,6 +201,86 @@ class AudioEngine {
     this.noise({ dur: 0.3, gain, filter: 'bandpass', freq: 400, freqEnd: 4000, q: 2, attack: 0.08 })
   }
 
+  // ---------- bubble wrap (pop only; this repo's own copy, not shared) ----------
+
+  /** One noise burst through a filter, with its own gain envelope and pan. */
+  private burst(t0: number, dur: number, gain: number, type: BiquadFilterType, freq: number, q: number, pan: number, attack = 0.001): void {
+    const ctx = this.ctx!
+    const src = ctx.createBufferSource()
+    src.buffer = this.noiseBuf
+    src.loop = true
+    const f = ctx.createBiquadFilter()
+    f.type = type
+    f.frequency.value = freq
+    f.Q.value = q
+    const g = ctx.createGain()
+    g.gain.setValueAtTime(0.0001, t0)
+    g.gain.exponentialRampToValueAtTime(gain, t0 + attack)
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
+    let node: AudioNode = src.connect(f).connect(g)
+    if (ctx.createStereoPanner) {
+      const p = ctx.createStereoPanner()
+      p.pan.value = Math.max(-1, Math.min(1, pan))
+      node = node.connect(p)
+    }
+    node.connect(this.master!)
+    src.start(t0, Math.random() * 1.5)
+    src.stop(t0 + dur + 0.02)
+  }
+
+  /** Bubble-wrap pop: highpassed crack + bandpassed plastic body + a low thup.
+   *  `body` is the bandpass centre (650 Hz single, climbs with combos and along a wring). */
+  wrapPop(v = 1, pan = 0, body = 650, delay = 0): void {
+    if (!this.budget()) return
+    const ctx = this.ctx!
+    const t0 = ctx.currentTime + delay
+    const j = () => 1 + (Math.random() * 2 - 1) * 0.12
+    const gv = v * Math.pow(10, ((Math.random() * 2 - 1) * 3) / 20)
+    this.burst(t0, 0.012, 0.5 * gv, 'highpass', 1800 * j(), 0.7, pan)
+    this.burst(t0, 0.035, 0.35 * gv, 'bandpass', body * j(), 1.2, pan)
+    const f0 = 220 * j()
+    this.tone({ freq: f0, freqEnd: f0 * (90 / 220), dur: 0.045, gain: 0.25 * gv, attack: 0.002, pan, delay })
+  }
+
+  /** The dud: a rubbery squeak. */
+  squeak(pan = 0): void {
+    if (!this.ok) return
+    this.tone({ freq: 900, freqEnd: 1300, dur: 0.07, gain: 0.18, attack: 0.006, pan })
+    this.burst(this.ctx!.currentTime, 0.05, 0.08, 'bandpass', 2500, 6, pan, 0.004)
+  }
+
+  /** Peeling the sheet off the box: bandpassed noise sweeping up, amplitude-modulated at 60 Hz. */
+  tear(): void {
+    if (!this.ok) return
+    const ctx = this.ctx!
+    const t0 = ctx.currentTime
+    const dur = 0.3
+    const src = ctx.createBufferSource()
+    src.buffer = this.noiseBuf
+    src.loop = true
+    const f = ctx.createBiquadFilter()
+    f.type = 'bandpass'
+    f.Q.value = 3
+    f.frequency.setValueAtTime(1200, t0)
+    f.frequency.exponentialRampToValueAtTime(3000, t0 + dur)
+    const g = ctx.createGain()
+    g.gain.setValueAtTime(0.0001, t0)
+    g.gain.exponentialRampToValueAtTime(0.3, t0 + 0.02)
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
+    const am = ctx.createGain()
+    am.gain.value = 0.5
+    const lfo = ctx.createOscillator()
+    lfo.frequency.value = 60
+    const depth = ctx.createGain()
+    depth.gain.value = 0.5
+    lfo.connect(depth).connect(am.gain)
+    src.connect(f).connect(g).connect(am).connect(this.master!)
+    src.start(t0, Math.random() * 1.5)
+    lfo.start(t0)
+    src.stop(t0 + dur + 0.02)
+    lfo.stop(t0 + dur + 0.02)
+  }
+
   /** Continuous rising tension tone. set(p) with p in [0,1]. */
   riser(): Riser {
     if (!this.ok) return { set() {}, stop() {} }

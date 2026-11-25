@@ -1,15 +1,15 @@
 # Chain Pop
 
-> A wall of bouncy neon bubbles. Pop five in 1.5 seconds for OVERDRIVE, then one tap sets off a full-screen chain reaction. A tiny stress-relief toy, no sign-up.
+> A sheet of parcel bubble wrap. Pop the cells one by one, or pop five fast and wring the whole sheet. One bubble per sheet refuses to pop. A tiny stress-relief toy, no sign-up.
 
 Chain Pop (连锁泡泡 (zh-CN), Burbujas en Cadena (es), Bulles en Chaîne (fr), 連鎖バブル (ja)) is a free browser toy at https://pop.integ.life/ by Integ Life. It opens straight into play: no sign-up, no download, no ads, no tutorial. It works with a mouse or a touchscreen on phones, tablets and computers.
 
 ## How to play
 
-1. Tap or click a bubble to pop it, or drag across the screen to pop a whole row. Each pop is a crisp, bouncy sound that climbs in pitch, and the neighbouring bubbles wobble.
-2. Pop 5 bubbles within 1.5 seconds to arm OVERDRIVE. The screen border glows and the five dots at the top light up.
-3. Your next tap sends out a shockwave: every bubble on the screen pops in a chain reaction over about two seconds, with a rain of notes. Then the whole wall bounces back.
-4. Popped bubbles grow back after a few seconds, so it never runs out.
+1. Tap or click a bubble to pop it, or drag across the sheet to pop a whole row. Each one gives a dry plastic crack, and popped cells stay flat, so the sheet fills up with your work.
+2. One bubble on every sheet is a dud. It only squeaks and slides away from your finger. Keep pressing: the fifth press finally pops it.
+3. Pop 5 bubbles within 1.5 seconds and the sheet is ready to wring. Tap anywhere: a twist runs out in a straight line from your finger and flattens the whole sheet in about two seconds. The dud survives, of course.
+4. When a sheet is done, it is peeled off and the next sheet is already lying underneath. It never runs out.
 
 ## Facts
 

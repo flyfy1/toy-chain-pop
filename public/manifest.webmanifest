@@ -1,14 +1,14 @@
 {
   "name": "Chain Pop · integ.life",
   "short_name": "Chain Pop",
-  "description": "A wall of bouncy neon bubbles. Pop five in 1.5 seconds for OVERDRIVE, then one tap sets off a full-screen chain reaction. A tiny stress-relief toy, no sign-up.",
+  "description": "A sheet of parcel bubble wrap. Pop the cells one by one, or pop five fast and wring the whole sheet. One bubble per sheet refuses to pop. A tiny stress-relief toy, no sign-up.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "fullscreen",
   "orientation": "any",
-  "background_color": "#05050c",
-  "theme_color": "#05050c",
+  "background_color": "#C9A77A",
+  "theme_color": "#C9A77A",
   "categories": [
     "games",
     "entertainment",

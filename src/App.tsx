@@ -19,7 +19,7 @@ export default function App() {
   return (
     <>
       <canvas ref={ref} />
-      <Hint text={t('hint_pop')} hidden={touched} />
+      <Hint text={t('hint_pop')} hidden={touched} toy="pop" />
       <MoreMenu current="pop" />
     </>
   )
