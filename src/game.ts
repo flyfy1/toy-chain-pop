@@ -3,7 +3,7 @@
 // A finished sheet is peeled off, and the next one is already lying underneath.
 import { audio, pentaFreq } from './engine/AudioEngine'
 import { track } from './analytics'
-import { stats } from './share'
+import { peakEvery, stats } from './share'
 import { t as tr } from './i18n'
 import { Flash, Shake, clamp, haptic, runLoop, setupCanvas, type Stage } from './engine/juice'
 import { FONT, SPRITE, bakeBox, bakeFilm, makeDome, makePopped, rng, type WrapLayout } from './wrap'
@@ -329,6 +329,7 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     const left = dud && dud.alive
     track('sheet_done', { sheet: sheetN, seconds: Math.round(time - sheetStart), wrung: wrung ? 1 : 0 })
     if (left) track('dud_left', { sheet: sheetN })
+    peakEvery('pop', sheetN, { snap, data: { cells: cells.length, s: Math.round((time - sheetStart) * 10) / 10, dud: left ? 1 : 0, wrung: wrung ? 1 : 0 } })
     audio.tear()
     haptic(15)
     sheetN++
