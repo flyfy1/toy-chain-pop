@@ -9,7 +9,7 @@ import { Flash, Shake, clamp, haptic, runLoop, setupCanvas, type Stage } from '.
 import { FONT, SPRITE, bakeBox, bakeFilm, makeDome, makePopped, rng, type WrapLayout } from './wrap'
 
 const DOME_VARIANTS = 3
-const POP_VARIANTS = 6
+const POP_VARIANTS = 10 // 4 of them show no tear (see makePopped)
 const OVERDRIVE_N = 5
 const OVERDRIVE_WINDOW = 1.5
 const SQUASH = 0.03 // s under the finger before the dome gives

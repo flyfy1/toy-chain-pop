@@ -381,12 +381,15 @@ export function makePopped(R: number, dpr: number, v: number): HTMLCanvasElement
       g.stroke()
     }
   }
-  // the tear: one short dark slit with a lifted lip catching the light on its upper-left edge
-  const ang = sa + 1.57 + (r() - 0.5) * 0.6
-  const sl = (0.17 + r() * 0.06) * R
+  // the tear: a short slit with a lifted lip catching the light on its upper-left edge. Real popped
+  // wrap mostly splits along the seam where you cannot see it, so 4 of the 10 variants show no tear
+  // at all, and the rest vary in length, bend and depth: a uniform dark dash per cell reads as a print.
+  const ang = sa + 1.57 + (r() - 0.5) * 0.9
+  const sl = (0.06 + r() * 0.12) * R
   const ux = Math.cos(ang)
   const uy = Math.sin(ang)
-  const bend = 0.05 * R
+  const bend = (r() - 0.5) * 0.12 * R
+  const depth = 0.55 + r() * 0.45
   const tear = (ox: number, oy: number, col: string, lw: number) => {
     g.strokeStyle = col
     g.lineWidth = lw
@@ -395,8 +398,10 @@ export function makePopped(R: number, dpr: number, v: number): HTMLCanvasElement
     g.quadraticCurveTo(px - uy * bend + ox, py + ux * bend + oy, px + ux * sl + ox, py + uy * sl + oy)
     g.stroke()
   }
-  tear(0, 0, 'rgba(55,38,18,0.42)', 1.6)
-  tear(-0.9, -1.1, 'rgba(255,255,255,0.45)', 0.9)
+  if (![0, 3, 6, 8].includes(v % 10)) {
+    tear(0, 0, `rgba(55,38,18,${(0.24 * depth).toFixed(3)})`, 1.2 + 0.3 * depth)
+    tear(-0.9, -1.1, `rgba(255,255,255,${(0.28 * depth).toFixed(3)})`, 0.9)
+  }
   g.restore()
   // the seal ring stays: smooth, slightly irregular
   g.strokeStyle = 'rgba(255,255,255,0.28)'
