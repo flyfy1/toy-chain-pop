@@ -329,7 +329,8 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     const left = dud && dud.alive
     track('sheet_done', { sheet: sheetN, seconds: Math.round(time - sheetStart), wrung: wrung ? 1 : 0 })
     if (left) track('dud_left', { sheet: sheetN })
-    peakEvery('pop', sheetN, { snap, data: { cells: cells.length, s: Math.round((time - sheetStart) * 10) / 10, dud: left ? 1 : 0, wrung: wrung ? 1 : 0 } })
+    // the card's window centres on the bubble that would not pop (a whole one among the flat ones)
+    peakEvery('pop', sheetN, { snap, data: { cells: cells.length, s: Math.round((time - sheetStart) * 10) / 10, dud: left ? 1 : 0, wrung: wrung ? 1 : 0, fy: left ? Math.round((dud!.y / h) * 100) / 100 : 0.5 } })
     audio.tear()
     haptic(15)
     sheetN++
