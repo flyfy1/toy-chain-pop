@@ -1,0 +1,53 @@
+# Chain Pop
+
+> A sheet of parcel bubble wrap. Pop the cells one by one, or pop five fast and wring the whole sheet. One bubble per sheet refuses to pop. A tiny stress-relief toy, no sign-up.
+
+Chain Pop (连锁泡泡 (zh-CN), Burbujas en Cadena (es), Bulles en Chaîne (fr), 連鎖バブル (ja)) is a free browser toy at https://pop.integ.life/ by Integ Life. It opens straight into play: no sign-up, no download, no ads, no tutorial. It works with a mouse or a touchscreen on phones, tablets and computers.
+
+## How to play
+
+1. Tap or click a bubble to pop it, or drag across the sheet to pop a whole row. Each one gives a dry plastic crack, and popped cells stay flat, so the sheet fills up with your work.
+2. One bubble on every sheet is a dud. It only squeaks and slides away from your finger. Keep pressing: the fifth press finally pops it.
+3. Pop 5 bubbles within 1.5 seconds and the sheet is ready to wring. Tap anywhere: a twist runs out in a straight line from your finger and flattens the whole sheet in about two seconds. The dud survives, of course.
+4. When a sheet is done, it is peeled off and the next sheet is already lying underneath. It never runs out.
+
+## Facts
+
+- URL: https://pop.integ.life/
+- Price: free
+- Platforms: any modern web browser (desktop and mobile)
+- Languages: English, 简体中文 (Simplified Chinese), Español, Français and 日本語 (Japanese), picked from the browser language (default English)
+- Sound: synthesised live with the Web Audio API; vibration on Android
+- Made by: Integ Life (https://integ.life/), first published 2026-11-24
+
+## FAQ
+
+**Is Chain Pop free?**
+Yes. It is free, with no sign-up, no download and no ads. It runs in any modern browser on phones, tablets and computers.
+
+**Does it have sound and vibration?**
+Yes. Every sound is synthesised live in the browser with the Web Audio API, so there are no audio files to load. On Android phones it also vibrates at the big moments; iPhone browsers do not support web vibration.
+
+**Which languages does it support?**
+English, 简体中文 (Simplified Chinese), Español, Français and 日本語 (Japanese). The language is picked automatically from your browser settings; any other language falls back to English.
+
+**Who made it?**
+Integ Life (integ.life). Chain Pop is one of twelve small stress-relief toys, together with Charge Burst, Void Harvest, Glass Smash, Knock on Wood, Lap Cat, Squishy Bun, Scratch That, Peel Off, Give It a Twirl, Tablecloth Trick, Smooth as Silk. More games are at games.integ.life.
+
+**Is any personal data collected?**
+No account and no personal data. At most, anonymous usage statistics (page views and play counts) are collected.
+
+## Related
+
+- [Charge Burst](https://charge.integ.life/): Hold to annoy a pufferfish until it puffs up and blows its spines off.
+- [Void Harvest](https://void.integ.life/): Your cursor is a black hole: swallow the socks, receipts, client emails and Monday. Sometimes it gives one sock back.
+- [Glass Smash](https://smash.integ.life/): Smash a pane of glass with the word you hate written on it.
+- [Knock on Wood](https://knock.integ.life/): Tap a wooden fish. Merit +1.
+- [Lap Cat](https://purr.integ.life/): Pet a soft, purring cat on your screen. Mind the belly.
+- [Squishy Bun](https://squish.integ.life/): Squeeze a soft mochi bun. It slowly forgives you.
+- [Scratch That](https://scratch.integ.life/): Scratch the silver off a card. Win a nap.
+- [Peel Off](https://peel.integ.life/): Peel the film off a brand-new phone. Then try to put the film down.
+- [Give It a Twirl](https://twirl.integ.life/): A new skirt on a dress form. Swipe to spin it and watch the hem fly out flat.
+- [Tablecloth Trick](https://yoink.integ.life/): Whip a silk tablecloth out from under Mum's bowls. Fast, or everything goes with it.
+- [Smooth as Silk](https://silk.integ.life/): A silk curtain at an open window. Drag it, let go, watch it fall back.
+- [Integ Games](https://games.integ.life/): more browser games
