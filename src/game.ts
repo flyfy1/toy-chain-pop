@@ -2,7 +2,7 @@
 // the whole sheet in a straight twisting front. One cell per sheet is a dud that only squeaks until the fifth press.
 // A finished sheet is peeled off, and the next one is already lying underneath.
 import { audio, pentaFreq } from './engine/AudioEngine'
-import { track } from './analytics'
+import { act, track } from './analytics'
 import { peakEvery, stats } from './share'
 import { t as tr } from './i18n'
 import { Flash, Shake, clamp, haptic, runLoop, setupCanvas, type Stage } from './engine/juice'
@@ -227,6 +227,7 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
   function press(c: Cell, fx: number, fy: number) {
     if (c === dud) return dudPress(c, fx, fy)
     c.squashAt = time
+    act('pop')
     combo = time - lastPop < 0.5 ? combo + 1 : 0
     lastPop = time
     audio.wrapPop(1, panOf(c.x), 650 + (1400 - 650) * Math.min(1, combo / 15))
@@ -255,6 +256,7 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     }
     // fifth press: finally
     c.squashAt = time
+    act('pop')
     audio.wrapPop(1, panOf(c.x), 650)
     audio.wrapPop(0.8, panOf(c.x), 520, 0.04)
     audio.tone({ freq: 784, dur: 0.25, gain: 0.1, delay: 0.06 })
@@ -280,6 +282,7 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     armed = false
     chaining = true
     wrung = true
+    act('wring')
     chainCount = 0
     chainNote = 0
     stopT = 0.055
