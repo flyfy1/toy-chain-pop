@@ -3,7 +3,7 @@
 // A finished sheet is peeled off, and the next one is already lying underneath.
 import { audio, pentaFreq } from './engine/AudioEngine'
 import { act, track } from './analytics'
-import { peakEvery, stats } from './share'
+import { offer, peakEvery, stats } from './share'
 import { t as tr } from './i18n'
 import { Flash, Shake, clamp, haptic, runLoop, setupCanvas, type Stage } from './engine/juice'
 import { FONT, SPRITE, bakeBox, bakeFilm, makeDome, makePopped, rng, type WrapLayout } from './wrap'
@@ -369,6 +369,27 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     else if (!chaining) hitAt(x, y, true)
   }
 
+  // the FRAGILE sticker under the sheet (a portal to smash): a tap over it pops the bubble there (as ever);
+  // a tap on a flat cell over it lifts its corner. The 2nd tap over it may show the bubble.
+  let liftAt = -1e9
+  const STICK_A = (8 * Math.PI) / 180
+  const sticker = () => ({ x: stage.w - 7 * R, y: stage.h - 8 * R, w: 9 * R, h: 3.1 * R })
+  const onSticker = (x: number, y: number) => {
+    const k = sticker()
+    const dx = x - k.x,
+      dy = y - k.y
+    const lx = dx * Math.cos(STICK_A) - dy * Math.sin(STICK_A),
+      ly = dx * Math.sin(STICK_A) + dy * Math.cos(STICK_A)
+    return Math.abs(lx) < k.w / 2 && Math.abs(ly) < k.h / 2
+  }
+  /** the sticker's top right corner on screen */
+  const cornerAt = (): [number, number] | null => {
+    if (peel) return null
+    const k = sticker()
+    const cx = k.w / 2,
+      cy = -k.h / 2
+    return [k.x + cx * Math.cos(-STICK_A) - cy * Math.sin(-STICK_A), k.y + cx * Math.sin(-STICK_A) + cy * Math.cos(-STICK_A)]
+  }
   const onDown = (e: PointerEvent) => {
     audio.unlock()
     if (!started) {
@@ -378,7 +399,15 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     pointerDown = true
     canvas.setPointerCapture?.(e.pointerId)
     dudInside = false
+    const flatHere = !peel && !armed && !chaining && onSticker(e.clientX, e.clientY) && !cellAt(e.clientX, e.clientY)
     onPress(e.clientX, e.clientY)
+    if (!peel && onSticker(e.clientX, e.clientY)) {
+      if (flatHere) {
+        liftAt = performance.now()
+        haptic(6)
+      }
+      offer('pop', 'fragile', cornerAt)
+    }
   }
   const onMove = (e: PointerEvent) => {
     if (pointerDown && !busy() && !armed) hitAt(e.clientX, e.clientY, false)
@@ -564,6 +593,28 @@ export function startGame(canvas: HTMLCanvasElement, onFirst: () => void): () =>
     shake.apply(ctx, w, h, now)
     const t = now / 1000
     if (ground) ctx.drawImage(ground, 0, 0, w, h)
+    // the sticker's lifted corner (1.2 s), over the film it lies under
+    const lk = (now - liftAt) / 1200
+    if (lk >= 0 && lk < 1) {
+      const k = sticker()
+      const a = R * 0.9 * Math.sin(Math.PI * Math.min(1, lk * 2.5)) * (lk < 0.6 ? 1 : 1 - (lk - 0.6) / 0.4)
+      ctx.save()
+      ctx.translate(k.x, k.y)
+      ctx.rotate(-STICK_A)
+      ctx.translate(k.w / 2, -k.h / 2)
+      ctx.shadowColor = 'rgba(70,50,25,0.35)'
+      ctx.shadowBlur = R * 0.25
+      ctx.shadowOffsetY = R * 0.08
+      ctx.fillStyle = '#F1E6D2' // the sticker's backing, curling up
+      ctx.beginPath()
+      ctx.moveTo(-a * 1.1, 0)
+      ctx.quadraticCurveTo(-a * 0.9, a * 0.9, -a * 0.25, a * 1.05)
+      ctx.lineTo(0, a * 1.1)
+      ctx.lineTo(0, 0)
+      ctx.closePath()
+      ctx.fill()
+      ctx.restore()
+    }
 
     // the sheet gathers a little towards the twist while the wring runs (domes only; the flat film stays put)
     const squeeze = chaining ? 0.015 * Math.sin(Math.PI * clamp((time - wring.t0) / 1.7, 0, 1)) : 0

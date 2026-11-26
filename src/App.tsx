@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { MoreMenu } from './components/MoreMenu'
 import { applyMeta, t } from './i18n'
 import { startAnalytics, track } from './analytics'
-import { landing, trackLanding } from './share'
+import { arrive, landing, trackLanding } from './share'
 import { Tag } from './components/Tag'
 
 /** a challenge link's time (pop and void carry the sender's seconds as `t`) */
@@ -21,6 +21,8 @@ export default function App() {
     applyMeta('pop')
     startAnalytics('pop')
     trackLanding()
+    // a portal visit (scratch's bubble-wrap prize): the tag only
+    arrive('pop', ['top-16', 'bg-[#FFFDF7] text-[#1E1E1E] font-medium'])
     return startGame(ref.current!, () => {
       setTouched(true)
       track('play_start')
