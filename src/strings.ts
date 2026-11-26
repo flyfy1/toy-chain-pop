@@ -2,6 +2,7 @@
 // The text every toy shares (names for the More menu, Share, About) lives in i18n.ts.
 
 const en = {
+  name_pop: "Chain Pop",
   pop_tag: "Someone cleared a sheet in {s}s. Faster?",
   desc_pop: "A sheet of parcel bubble wrap. Pop the cells one by one, or pop five fast and wring the whole sheet. One bubble per sheet refuses to pop. A tiny stress-relief toy, no sign-up.",
   hint_pop: "Pop the bubble wrap · 5 fast pops, then wring it",
@@ -16,6 +17,7 @@ const en = {
 }
 
 const zhCN: typeof en = {
+  name_pop: "连锁泡泡",
   pop_tag: "有人 {s} 秒捏完一张。比 TA 快？",
   desc_pop: "一张快递泡泡纸。一个一个捏，或者连捏 5 个后整张拧爆。每张都有一个怎么也捏不破的。打开即玩的解压小玩具。",
   hint_pop: "捏泡泡纸 · 连捏 5 个，整张拧爆",
@@ -30,6 +32,7 @@ const zhCN: typeof en = {
 }
 
 const es: typeof en = {
+  name_pop: "Burbujas en Cadena",
   pop_tag: "Alguien vació una hoja en {s} s. ¿Más rápido?",
   desc_pop: "Una hoja de plástico de burbujas de paquete. Explótalas una a una, o cinco seguidas y retuerce la hoja entera. En cada hoja hay una que se resiste. Un juguete antiestrés, sin registro.",
   hint_pop: "Explota el plástico de burbujas · 5 rápidas y retuércelo",
@@ -44,6 +47,7 @@ const es: typeof en = {
 }
 
 const fr: typeof en = {
+  name_pop: "Bulles en Chaîne",
   pop_tag: "Quelqu’un a vidé une feuille en {s} s. Plus vite ?",
   desc_pop: "Une feuille de papier bulle de colis. Éclate les bulles une à une, ou cinq d’affilée puis tords toute la feuille. Sur chaque feuille, une bulle refuse d’éclater. Un petit jouet anti-stress, sans inscription.",
   hint_pop: "Éclate le papier bulle · 5 d’affilée, puis tords-le",
@@ -58,6 +62,7 @@ const fr: typeof en = {
 }
 
 const ja: typeof en = {
+  name_pop: "連鎖バブル",
   pop_tag: "誰かが {s} 秒で 1 枚潰しました。もっと速く？",
   desc_pop: "荷物のプチプチが 1 枚。ひとつずつつぶすもよし、5 連続でつぶして雑巾しぼりで一気にいくもよし。どのシートにも、なぜかつぶれない 1 個がある。登録不要のストレス解消トイ。",
   hint_pop: "プチプチをつぶそう · 5 連続で雑巾しぼり",
